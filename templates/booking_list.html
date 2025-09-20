@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Заброньовані номери</title>
+</head>
+<body>
+    <p>fgdfgdfgdfg</p>
+    {% for booking in bookings%}
+        <tr>
+            <td>{{booking.id}}</td>
+            <td>{{booking.room.room_number}}</td>
+            <td>{{booking.user.username}}</td>
+            <td>{{booking.guests}}</td>
+        </tr>
+    {%empty%}
+    <tr>
+        <tr>Немає бронювань</td>
+    </tr>
+    {%endfor%}
+</body>
+</html>
