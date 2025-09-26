@@ -17,7 +17,7 @@ class Room(models.Model):
     room_number = models.CharField(max_length=20)
     room_type = models.CharField(max_length=100)
     beds = models.PositiveIntegerField()
-    price_per_hight = models.DecimalField(max_digits=8,decimal_places=2)
+    price_per_night = models.DecimalField(max_digits=8,decimal_places=2)
     avaible = models.BooleanField(default=True)
 
     def __str__(self):
@@ -36,6 +36,5 @@ class Booking(models.Model):
     guests = models.PositiveIntegerField()
     status = models.CharField(max_length=10,choices=STATUS, default="free")
 
-
     def __str__(self):
-        return f"Бронювання #{self.id} ({self.get_status_display()})"
+        return f"Бронювання готелю #{self.id} ({self.get_status_display()})"

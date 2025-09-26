@@ -1,23 +1,129 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="uk">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Заброньовані номери</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+
+        header {
+            background-color: #003366;
+            color: white;
+            padding: 1rem 2rem;
+            text-align: center;
+        }
+
+        header h1 {
+            margin: 0;
+        }
+
+        nav {
+            background-color: #0055a5;
+            padding: 0.5rem 2rem;
+            text-align: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: bold;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+        main {
+            padding: 2rem;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+            background-color: white;
+        }
+
+        th, td {
+            padding: 12px;
+            border: 1px solid #ccc;
+            text-align: center;
+        }
+
+        th {
+            background-color: #e0e0e0;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        footer {
+            background-color: #003366;
+            color: white;
+            text-align: center;
+            padding: 1rem;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+            margin-top: 2rem;
+        }
+    </style>
 </head>
 <body>
-    <p>fgdfgdfgdfg</p>
-    {% for booking in bookings%}
-        <tr>
-            <td>{{booking.id}}</td>
-            <td>{{booking.room.room_number}}</td>
-            <td>{{booking.user.username}}</td>
-            <td>{{booking.guests}}</td>
-        </tr>
-    {%empty%}
-    <tr>
-        <tr>Немає бронювань</td>
-    </tr>
-    {%endfor%}
+
+<header>
+    <h1>Список заброньованих номерів</h1>
+</header>
+
+<nav>
+    <a href="/">Головна</a>
+    <a href="/booking">Забронювати</a>
+    <a href="/bookings">Мої бронювання</a>
+</nav>
+
+<main>
+    {% if bookings %}
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Номер кімнати</th>
+                <th>Користувач</th>
+                <th>Кількість гостей</th>
+                <th>Початок бронювання</th>
+                <th>Кінець бронбвання</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for booking in bookings %}
+            <tr>
+                <td>{{ booking.id }}</td>
+                <td>{{ booking.room.room_number }}</td>
+                <td>{{ booking.user.username }}</td>
+                <td>{{ booking.guests }}</td>
+                <td>{{ booking.start_booking}}</td>
+                <td>{{ booking.end_booking }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+        <p>Немає активних бронювань.</p>
+    {% endif %}
+</main>
+
+<footer>
+    &copy;Готель “Синевир”. Усі права захищено.
+</footer>
+
 </body>
 </html>
+
