@@ -17,9 +17,17 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from hotel_booking import views
+from hotel_booking.views import register_view, login_view
+from django.contrib.auth.views import LogoutView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('bookings/', views.booking_list,name="booking_list"),
+    path('booking_list_as_admin/', views.booking_list_as_admin,name="booking_list_as_admin"),
     path('', views.main_system,name="main_system"),
+    path('booking_as_admin/', views.booking_as_admin,name="booking_as_admin"),
+    path('my_booking_as_admin/', views.my_booking_as_admin,name="my_booking_as_admin"),
+    path('booking_as_user/', views.booking_as_user,name="booking_as_user"),
+    path('regiregister/', register_view,name="regiregister"),
+    path('login/', login_view,name="login"),
+    path('logout/', LogoutView.as_view(),name="logout"),
 ]

@@ -3,79 +3,270 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Бронювання готелю</title>
+    <title>Готель “Синевир” | Бронювання</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: url('https://source.unsplash.com/1600x900/?hotel,resort') no-repeat center center/cover;
-            height: 100vh;
+            min-height: 70vh;
             color: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            position: relative;
         }
 
         .overlay {
             background-color: rgba(0, 0, 0, 0.6);
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-        }
-
-        .content {
-            position: relative;
-            text-align: center;
+            inset: 0;
             z-index: 1;
         }
 
-        .content h1 {
-            font-size: 3rem;
-            margin-bottom: 1rem;
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            top: 40%;
+            transform: translateY(-40%);
         }
 
-        .content p {
+        .hero-content h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.5);
+        }
+
+        .hero-content p {
             font-size: 1.2rem;
             margin-bottom: 2rem;
         }
 
-        .btn {
-            padding: 0.75rem 2rem;
-            font-size: 1rem;
+        .btn-custom {
+            padding: 0.8rem 2rem;
+            border-radius: 30px;
+            font-weight: 600;
             background-color: #ffcc00;
             color: #000;
-            text-decoration: none;
-            border-radius: 5px;
-            transition: background-color 0.3s ease;
+            transition: all 0.3s ease;
+            border: none;
         }
 
-        .btn:hover {
+        .btn-custom:hover {
             background-color: #e6b800;
+            transform: scale(1.05);
+        }
+        footer {
+            background-color: rgba(255, 204, 0, 0.9);
+            color: #000;
+            text-align: center;
+            padding: 2rem 0;
+            font-weight: 500;
         }
 
-        @media (max-width: 768px) {
-            .content h1 {
-                font-size: 2rem;
-            }
-            .content p {
-                font-size: 1rem;
-            }
+        .custom-navbar {
+            padding: 1rem 0;
+            font-size: 1.1rem;
         }
+
+        .navbar-nav .nav-link {
+            transition: color 0.3s ease;
+        }
+
+        .navbar-nav .nav-link:hover {
+            color: #ffcc00;
+        }
+
+
+
     </style>
 </head>
+
 <body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top shadow-lg custom-navbar">
+        <div  class="container">
+            <a class="navbar-brand d-flex align-items-center" href="#">
+                <span  class="fs-4 fw-bold">Hotel “Синевир”</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav align-items-center">
+                    <li class="nav-item">
+                        <a href="#" class="nav-link px-3 fs-5">🏠 Твої Бронюваня</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#aboutus" class="nav-link px-3 fs-5">ℹ️ Про нас</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#phone" class="nav-link px-3 fs-5">📞 Контакти</a>
+                    </li>
+                </ul>
+                <a href="/login" class="btn btn-warning fw-bold">Зайти</a>
+            </div>
+        </div>
+    </nav>
+    
+    <section class="hero-section position-relative" style="background: url('https://images.unsplash.com/photo-1501117716987-c8e1ecb2101f') center/cover no-repeat;height: 70vh;">
+
     <div class="overlay"></div>
-    <div class="content">
-        <h1>Ласкаво просимо до нашого готелю</h1>
-        <p>Забронюйте комфортне проживання вже сьогодні!</p>
-        <a href="/bookings" class="btn">Забронювати</a>
+    <div class="hero-content container">
+        <h1>Ласкаво просимо до нашого готелю!</h1>
+        <p>Насолоджуйтесь комфортом, відпочинком і сервісом найвищого рівня.</p>
+        <div class="d-flex justify-content-center gap-3">
+            <a href="/booking_list_as_admin" class="btn btn-custom">Адмін панель</a>
+        </div>
     </div>
+    </section>
+
+    <main class="container my-5">
+
+        <section class="booking-form bg-light p-4 rounded shadow-sm mb-5">
+            <h2 class="text-center mb-4 text-dark">Забронюйте номер</h2>
+            <form>
+                <div class="row g-3">
+                    <div class="col-md-4">
+                        <label for="hotelSelect" class="form-label">Готель</label>
+                        <select class="form-select" id="hotelSelect">
+                            <option selected>Оберіть готель...</option>
+                            <option>Синевир</option>
+                        </select>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="checkIn" class="form-label">Дата заїзду</label>
+                        <input type="date" class="form-control" id="checkIn">
+                    </div>
+                    <div class="col-md-4">
+                        <label for="checkOut" class="form-label">Дата виїзду</label>
+                        <input type="date" class="form-control" id="checkOut">
+                    </div>
+                    <div class="col-md-4">
+                        <label for="guests" class="form-label">Кількість гостей</label>
+                        <input type="number" min="1" value="1" class="form-control" id="guests">
+                    </div>
+                    <div class="col-md-8 d-flex align-items-end justify-content-end">
+                        <button type="submit" class="btn btn-warning px-5 fw-bold">🔍 Знайти номери</button>
+                    </div>
+                </div>
+            </form>
+        </section>
+        {% load static %}  
+        <section class="rooms">
+            <h2 class="text-center mb-4 text-dark">Доступні кімнати</h2>
+    
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="card h-100 shadow-sm">
+                        <img src="{% static 'img/lux_hotel.png' %}" class="card-img-top" alt="Номер Люкс">
+                        <div class="card-body">
+                            <h5 class="card-title">Люкс</h5>
+                            <p class="card-text text-muted">Просторий номер з видом на гори, Wi-Fi, кондиціонер і сніданок включено.</p>
+                            <p class="fw-bold">💰 2500 грн/ніч</p>
+                            <a href="{% url 'booking_as_user' %}" class="btn btn-warning w-100">Забронювати</a>
+                        </div>
+                    </div>
+                </div>
+    
+                <div class="col-md-4">
+                    <div class="card h-100 shadow-sm">
+                        <img src="{% static 'img/standart_hotel.png' %}" class="card-img-top" alt="Стандарт">
+                        <div class="card-body">
+                            <h5 class="card-title">Стандарт</h5>
+                            <p class="card-text text-muted">Затишний номер для двох осіб. Ідеальний варіант для короткого відпочинку.</p>
+                            <p class="fw-bold">💰 1200 грн/ніч</p>
+                            <a href="{% url 'booking_as_user' %}" class="btn btn-warning w-100">Забронювати</a>
+                        </div>
+                    </div>
+                </div>
+    
+                <div class="col-md-4" id="aboutus" >
+                    <div class="card h-100 shadow-sm">
+                        <img src="{% static 'img/econom_hotel.jpg' %}" class="card-img-top" alt="Економ">
+                        <div class="card-body">
+                            <h5 class="card-title">Економ</h5>
+                            <p class="card-text text-muted">Бюджетний номер з усім необхідним для комфортного проживання.</p>
+                            <p class="fw-bold">💰 800 грн/ніч</p>
+                            <a href="{% url 'booking_as_user' %}" class="btn btn-warning w-100">Забронювати</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="row g-4">
+                    <div class="col-md-4">
+                        <div class="card h-100 shadow-sm">
+                            <img src="{% static 'img/lux_hotel.png' %}" class="card-img-top" alt="Номер Люкс">
+                            <div class="card-body">
+                                <h5 class="card-title">Люкс</h5>
+                                <p class="card-text text-muted">Просторий номер з видом на гори, Wi-Fi, кондиціонер і сніданок включено.</p>
+                                <p class="fw-bold">💰 2500 грн/ніч</p>
+                                <a href="{% url 'booking_as_user' %}" class="btn btn-warning w-100">Забронювати</a>
+                            </div>
+                        </div>
+                    </div>
+        
+                    <div class="col-md-4">
+                        <div class="card h-100 shadow-sm">
+                            <img src="{% static 'img/standart_hotel.png' %}" class="card-img-top" alt="Стандарт">
+                            <div class="card-body">
+                                <h5 class="card-title">Стандарт</h5>
+                                <p class="card-text text-muted">Затишний номер для двох осіб. Ідеальний варіант для короткого відпочинку.</p>
+                                <p class="fw-bold">💰 1200 грн/ніч</p>
+                                <a href="{% url 'booking_as_user' %}" class="btn btn-warning w-100">Забронювати</a>
+                            </div>
+                        </div>
+                    </div>
+        
+                    <div class="col-md-4" id="aboutus" >
+                        <div class="card h-100 shadow-sm">
+                            <img src="{% static 'img/econom_hotel.jpg' %}" class="card-img-top" alt="Економ">
+                            <div class="card-body">
+                                <h5 class="card-title">Економ</h5>
+                                <p class="card-text text-muted">Бюджетний номер з усім необхідним для комфортного проживання.</p>
+                                <p class="fw-bold">💰 800 грн/ніч</p>
+                                <a href="{% url 'booking_as_user' %}" class="btn btn-warning w-100">Забронювати</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row g-4">
+                        <div class="col-md-4">
+                            <div class="card h-100 shadow-sm">
+                                <img src="{% static 'img/lux_hotel.png' %}" class="card-img-top" alt="Номер Люкс">
+                                <div class="card-body">
+                                    <h5 class="card-title">Люкс</h5>
+                                    <p class="card-text text-muted">Просторий номер з видом на гори, Wi-Fi, кондиціонер і сніданок включено.</p>
+                                    <p class="fw-bold">💰 2500 грн/ніч</p>
+                                    <a href="{% url 'booking_as_user' %}" class="btn btn-warning w-100">Забронювати</a>
+                                </div>
+                            </div>
+                        </div>
+            
+                        <div class="col-md-4">
+                            <div class="card h-100 shadow-sm">
+                                <img src="{% static 'img/standart_hotel.png' %}" class="card-img-top" alt="Стандарт">
+                                <div class="card-body">
+                                    <h5 class="card-title">Стандарт</h5>
+                                    <p class="card-text text-muted">Затишний номер для двох осіб. Ідеальний варіант для короткого відпочинку.</p>
+                                    <p class="fw-bold">💰 1200 грн/ніч</p>
+                                    <a href="{% url 'booking_as_user' %}" class="btn btn-warning w-100">Забронювати</a>
+                                </div>
+                            </div>
+                        </div>
+            
+                        <div class="col-md-4" id="aboutus" >
+                            <div class="card h-100 shadow-sm">
+                                <img src="{% static 'img/econom_hotel.jpg' %}" class="card-img-top" alt="Економ">
+                                <div class="card-body">
+                                    <h5 class="card-title">Економ</h5>
+                                    <p class="card-text text-muted">Бюджетний номер з усім необхідним для комфортного проживання.</p>
+                                    <p class="fw-bold">💰 800 грн/ніч</p>
+                                    <a href="{% url 'booking_as_user' %}" class="btn btn-warning w-100">Забронювати</a>
+                                </div>
+                            </div>
+                        </div>
+    </main>
+
+
+    <footer id="phone" >
+        &copy; 2025 Готель “Синевир”. Усі права захищено.
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+
 </body>
 </html>

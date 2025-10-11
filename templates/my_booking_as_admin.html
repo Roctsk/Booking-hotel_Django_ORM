@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Мої бронювання</title>
+</head>
+<body>
+    <h1>Мої бронювання</h1>
+    {%if bookings%}
+        <ul>
+            {%for booking in bookings%}
+                <li>
+                    Кімната:{{booking.room}}<br>
+                    <br>
+                    Початок бронювання:{{booking.start_booking}}<br>
+                    Кінець бронювання:{{booking.end_booking}}<br>
+                    Кількість гостей:{{booking.guests}}<br>
+                    Вид:{{booking.room.room_type}}<br>
+                    Статус:{{booking.status}}<br>
+                    <br>
+                    <br>
+                </li>
+            {%endfor%}
+        </ul>
+    {%else%}
+        <p>У вас ще немає бронювання</p>
+    {%endif%}
+</body>
+</html>

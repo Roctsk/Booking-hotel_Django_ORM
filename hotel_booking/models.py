@@ -34,7 +34,7 @@ class Booking(models.Model):
     start_booking = models.DateTimeField()
     end_booking = models.DateTimeField()
     guests = models.PositiveIntegerField()
-    status = models.CharField(max_length=10,choices=STATUS, default="free")
+    status = models.CharField(max_length=10,choices=STATUS, default="booked")
 
     def __str__(self):
         return f"Бронювання готелю #{self.id} ({self.get_status_display()})"
